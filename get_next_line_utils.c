@@ -6,7 +6,7 @@
 /*   By: haras <haras@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 14:58:32 by haras             #+#    #+#             */
-/*   Updated: 2025/08/02 15:40:35 by haras            ###   ########.fr       */
+/*   Updated: 2025/08/06 14:13:42 by haras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,52 @@ int	ft_strlen(const char *s)
 	while (*s++)
 		count++;
 	return (count);
+}
+
+char	*ft_strdup(const char *s)
+{
+	size_t	length;
+	size_t	index;
+	char	*location_pointer;
+
+	length = ft_strlen(s);
+	location_pointer = (char *)malloc(sizeof(char) * (length + 1));
+	if (!location_pointer)
+		return (NULL);
+	index = 0;
+	while (index < length)
+	{
+		location_pointer[index] = s[index];
+		index++;
+	}
+	location_pointer[index] = '\0';
+	return (location_pointer);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	source_len;
+	size_t	index;
+	char	*target;
+
+	if (!s)
+		return (NULL);
+	source_len = ft_strlen(s);
+	if (source_len <= start)
+		return (ft_strdup(""));
+	if (len > source_len - start)
+		len = source_len - start;
+	target = (char *)malloc(sizeof(char) * (len + 1));
+	if (!target)
+		return (NULL);
+	index = 0;
+	while (s[index + start] && index < len)
+	{
+		target[index] = s[start + index];
+		index++;
+	}
+	target[index] = '\0';
+	return (target);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -50,6 +96,8 @@ char	*ft_strchr(const char *s, int c)
 	int		i;
 	char	*pointer;
 
+	if (!s)
+		return (NULL);
 	pointer = (char *)s;
 	i = 0;
 	while (pointer[i] != '\0')
