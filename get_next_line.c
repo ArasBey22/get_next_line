@@ -6,7 +6,7 @@
 /*   By: haras <haras@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 14:58:26 by haras             #+#    #+#             */
-/*   Updated: 2025/08/06 16:13:50 by haras            ###   ########.fr       */
+/*   Updated: 2025/08/11 15:51:44 by haras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*insert_front(char *static_buffer, char *read_text)
 static char	*read_and_store(int fd, char *static_buffer)
 {
 	char	*read_text;
-	int		bytes_read;
+	ssize_t		bytes_read;
 
 	read_text = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!read_text)
